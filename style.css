@@ -1,0 +1,128 @@
+/* ===== Base theme: deep space ===== */
+:root { --space:#040814; --navy:#0f172a; --ice:#38bdf8; --crimson:#9f1239; }
+body { background: radial-gradient(ellipse at 20% 0%, #0b1530 0%, var(--space) 60%); font-family: system-ui, sans-serif; }
+
+/* Generic dark panel */
+.panel { background: rgba(15,23,42,.85); border: 1px solid rgba(56,189,248,.2); border-radius: 12px; padding: 16px; }
+
+/* ===== Telemetry bars ===== */
+.tele-row { display:flex; justify-content:space-between; font-size:.8rem; margin-bottom:4px; }
+.bar { height:8px; background:#1e293b; border-radius:99px; overflow:hidden; }
+.bar > i { display:block; height:100%; width:0; background:var(--ice); border-radius:99px; transition: width .5s ease, background .3s; }
+.bar > i.bad { background: var(--crimson); }
+
+/* ===== Selection cards ===== */
+.cat-title { font-weight:700; color:#7dd3fc; margin-bottom:8px; }
+.cat-title small { color:#94a3b8; font-weight:400; margin-left:6px; }
+.card { cursor:pointer; text-align:left; background:var(--navy); border:1px solid #1e3a5f; border-radius:10px; padding:12px; transition: box-shadow .2s, border-color .2s, transform .15s; }
+.card:hover { border-color:var(--ice); transform: translateY(-2px); }
+.card:focus-visible { outline:2px solid var(--ice); outline-offset:2px; }
+.card.selected { border-color:var(--ice); box-shadow: 0 0 18px rgba(56,189,248,.45), inset 0 0 12px rgba(56,189,248,.12); }
+.card .name { font-weight:600; color:#e0f2fe; }
+.card .stats { font-size:.75rem; color:#94a3b8; margin-top:4px; line-height:1.5; }
+.card .stats b { color:#7dd3fc; font-weight:600; }
+.card svg { margin-bottom:6px; }
+
+/* ===== E.V.A. ===== */
+.eva-orb { animation: pulse 2.4s ease-in-out infinite; filter: drop-shadow(0 0 6px #38bdf8); }
+@keyframes pulse { 50% { transform: scale(1.1); } }
+#eva-log li { padding:8px 10px; border-left:3px solid var(--ice); background:rgba(56,189,248,.07); border-radius:4px; animation: slide .3s ease; }
+#eva-log li.warn { border-color:var(--crimson); background:rgba(159,18,57,.18); color:#fecdd3; }
+#eva-log li.good { border-color:#4ade80; background:rgba(74,222,128,.08); }
+@keyframes slide { from { opacity:0; transform:translateX(10px); } }
+
+/* ===== Launch scrubbed report ===== */
+.scrub-title { color:#fb7185; animation: flicker 1s steps(2) 3; }
+@keyframes flicker { 50% { opacity:.35; } }
+.scrub-item { background:rgba(159,18,57,.2); border-left:3px solid var(--crimson); padding:8px 10px; margin-top:8px; border-radius:4px; animation: slide .4s ease both; }
+
+/* ===== Event buttons ===== */
+.ev-btn { background:var(--navy); border:1px solid var(--crimson); border-radius:8px; padding:10px; text-align:left; font-size:.85rem; transition: background .2s; }
+.ev-btn:hover { background:#3b0a1a; }
+
+@media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+
+/* ===== Data-traceability tags (N = NASA, D = derived, A = assumption) ===== */
+.tag { font-size:.62rem; font-weight:700; margin-left:2px; padding:0 3px; border-radius:3px; cursor:help; }
+.tag-N { background:#0369a1; color:#e0f2fe; }
+.tag-D { background:#4d7c0f; color:#ecfccb; }
+.tag-A { background:#9f1239; color:#ffe4e6; }
+.tag-S { background:#b45309; color:#fef3c7; }
+
+/* Mission briefing and responsive control room */
+* { box-sizing:border-box; }
+body { margin:0; color:#e8f3ff; min-height:100vh; line-height:1.55; }
+h1,h2,p { margin:0 0 .65rem; }
+h1,h2 { line-height:1.16; }
+h2 { font-size:1.15rem; }
+button { font:inherit; color:inherit; cursor:pointer; }
+button:disabled { opacity:.62; cursor:not-allowed; }
+button:focus-visible, summary:focus-visible { outline:2px solid #7dd3fc; outline-offset:3px; }
+.hidden { display:none !important; }
+.site-header { display:flex; align-items:center; gap:1rem; min-height:64px; padding:.75rem clamp(1rem,4vw,3rem); border-bottom:1px solid #213c61; background:#071125; }
+.site-header strong,.eyebrow { color:#7dd3fc; letter-spacing:.15em; font-size:.8rem; font-weight:800; }
+.site-header span,.muted { color:#aebfda; font-size:.9rem; }
+.welcome { min-height:calc(100svh - 64px); display:grid; align-items:center; padding:clamp(1.25rem,6vw,6rem); background:linear-gradient(90deg,#060c20 0%,#07132ce8 33%,#07132c29 78%), url("europa.webp") center/cover no-repeat, radial-gradient(ellipse at 85% 45%,#234783,#0a1432 52%,#060c20); }
+.hero-copy { max-width:530px; }
+.hero-copy h1 { font-size:clamp(3rem,8vw,6.1rem); letter-spacing:-.065em; }
+.intro { font-size:clamp(1rem,2.4vw,1.25rem); }
+.brief { margin:1.55rem 0; }
+.brief ol { padding-left:1.35rem; margin:.75rem 0 0; }
+.brief li + li { margin-top:.55rem; }
+.primary,.secondary { border:1px solid #315783; border-radius:9px; padding:.65rem 1rem; font-weight:700; }
+.primary { background:#50d7ff; border-color:#81ecff; color:#061524; box-shadow:0 0 22px #38bdf833; }
+.primary:hover { background:#a4edff; }
+.secondary { background:#132949; }
+.secondary:hover { background:#23476c; }
+.hero-copy .primary { padding:.85rem 1.4rem; min-width:190px; margin-bottom:.7rem; }
+.hero-copy .primary span { margin-left:.8rem; }
+.shell { max-width:1320px; margin:auto; padding:clamp(1rem,3vw,2.5rem); }
+.toolbar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:.6rem; }
+.toolbar h1 { font-size:clamp(1.65rem,4vw,2.8rem); margin:0; }
+.actions { display:flex; flex-wrap:wrap; gap:.55rem; }
+.status { color:#a5f3fc; min-height:1.55em; }
+.design-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(275px,330px); gap:1.1rem; align-items:start; }
+#builder > p { color:#b8c9e1; }
+#categories { display:grid; gap:1.4rem; margin:1rem 0; }
+.cat-title small { display:block; margin:4px 0 0; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,178px),1fr)); gap:.65rem; }
+.card { min-width:0; position:relative; }
+.card.selected::after { content:"✓"; position:absolute; top:.45rem; right:.65rem; color:#9af4c6; font-weight:800; }
+.card .stats { color:#b3c5df; }
+.sidebar { display:grid; gap:.85rem; position:sticky; top:1rem; }
+.telemetry { display:grid; gap:.75rem; }
+.tele-row { gap:.4rem; }
+.tele-row b { text-align:right; }
+details { margin-top:.8rem; font-size:.82rem; color:#b8c9e1; }
+summary { cursor:pointer; }
+#t-extra { margin-top:.5rem; }
+#eva-heading small { font-weight:400; color:#aebfda; margin-left:.3rem; }
+#eva-log { display:grid; gap:.45rem; padding:0; margin:0; list-style:none; font-size:.9rem; }
+.simulation { position:fixed; inset:0; z-index:2; display:flex; flex-direction:column; background:#040814; }
+.sim-header { display:grid; grid-template-columns:1fr auto; gap:.25rem .75rem; padding:.65rem clamp(.75rem,3vw,1.75rem); background:#101d36; border-bottom:1px solid #29466e; }
+#sim-phase { font-weight:800; color:#a5e8ff; align-self:center; }
+#sim-info { grid-column:1/-1; font-size:.86rem; color:#b8c9e1; }
+#sim-progress,.phase-track { grid-column:1/-1; width:100%; }
+#sim-progress { accent-color:#4ad4ff; height:10px; }
+.phase-track { display:grid; grid-template-columns:repeat(4,1fr); gap:.4rem; list-style:none; padding:0; margin:0; font-size:.77rem; color:#b8c9e1; }
+.phase-track [aria-current="step"] { color:#7ee7ff; font-weight:800; }
+#stage { display:block; flex:1; width:100%; height:0; min-height:0; }
+.decision { padding:.75rem clamp(.75rem,3vw,1.75rem); max-height:65dvh; overflow:auto; border-top:1px solid #36668c; background:#101d36; }
+.decision-options { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr)); gap:.5rem; }
+.ev-btn { border-color:#375f88; }
+.ev-btn:hover:enabled { background:#1d4169; }
+dialog { width:min(94vw,35rem); max-height:90dvh; overflow:auto; padding:1.25rem; color:inherit; border:1px solid #3e648d; border-radius:15px; background:#0e1c34; }
+dialog::backdrop { background:#020714cc; }
+.report-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:.55rem; margin:.8rem 0; }
+.report-grid .panel { padding:.6rem; }
+.report-grid b { display:block; color:#9fe7ff; }
+.score { font-size:1.25rem; color:#ffdc82; font-weight:800; }
+@media (max-width:760px) {
+  .design-grid { grid-template-columns:1fr; }
+  .sidebar { position:static; grid-row:1; }
+  .telemetry { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .tele-row { flex-wrap:wrap; }
+  .welcome { background-position:center, 61% center, center; }
+}
+
+.report-actions { margin-top:.75rem; }

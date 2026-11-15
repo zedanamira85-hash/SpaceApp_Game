@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mission Nova | Europa Deep</title>
+<link rel="stylesheet" href="style.css">
+<script src="europa_data.js" defer></script>
+<script src="script.js" defer></script>
+</head>
+<body>
+<header class="site-header"><strong>MISSION NOVA</strong><span>Europa Deep</span></header>
+<noscript><p>Enable JavaScript to play Mission Nova.</p></noscript>
+
+<main id="welcome" class="welcome">
+  <div class="hero-copy">
+    <p class="eyebrow">SPACE MISSION DESIGN GAME</p>
+    <h1>Europa Deep</h1>
+    <p class="intro">Design a probe, explore the ocean beneath Europa’s ice, and send your findings back to Earth.</p>
+    <div class="panel brief">
+      <h2>How to play</h2>
+      <ol>
+        <li><strong>Design.</strong> Pick a rocket, shielding, a power source, and up to three tools. Include the ice-melting drill.</li>
+        <li><strong>Check and launch.</strong> Keep cost and mass under their limits, meet the power and shielding requirements, and use E.V.A.’s tips to fix problems.</li>
+        <li><strong>Explore and transmit.</strong> Respond to an ocean event with your onboard tools, then send your findings home.</li>
+      </ol>
+    </div>
+    <button class="primary" id="start-btn">Start Mission <span aria-hidden="true">→</span></button>
+    <p class="muted">A fictional future mission inspired by NASA research.</p>
+  </div>
+</main>
+
+<main id="design" class="shell hidden">
+  <div class="toolbar">
+    <div><p class="eyebrow">MISSION DESIGN</p><h1 id="design-heading" tabindex="-1">Design your spacecraft</h1></div>
+    <div class="actions"><button class="secondary" id="brief-btn">Mission Brief</button><button class="secondary" id="reset-btn">Reset All Selections</button></div>
+  </div>
+  <p class="status" id="design-status" role="status"></p>
+  <div class="design-grid">
+    <section id="builder" aria-label="Spacecraft design">
+      <p>Choose one option in each of the first three sections. In the instrument bay, choose the drill and up to two science tools.</p>
+      <div id="categories"></div>
+      <button class="primary" id="launch-btn">Check &amp; Launch</button>
+    </section>
+    <aside class="sidebar">
+      <section class="panel" aria-labelledby="resources-heading">
+        <h2 id="resources-heading">Mission Resources</h2>
+        <div class="telemetry">
+          <div><div class="tele-row"><span>Budget used</span><b id="t-budget"></b></div><div class="bar"><i id="b-budget"></i></div></div>
+          <div><div class="tele-row"><span>Probe mass</span><b id="t-mass"></b></div><div class="bar"><i id="b-mass"></i></div></div>
+          <div><div class="tele-row"><span>Arrival power / needed</span><b id="t-power"></b></div><div class="bar"><i id="b-power"></i></div></div>
+          <div><div class="tele-row"><span>Radiation shielding</span><b id="t-shield"></b></div><div class="bar"><i id="b-shield"></i></div></div>
+        </div>
+        <details><summary>About the numbers</summary><p id="t-extra"></p></details>
+      </section>
+      <section class="panel" aria-labelledby="eva-heading">
+        <h2 id="eva-heading">E.V.A. <small>Mission guidance</small></h2>
+        <ul id="eva-log"></ul>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<section id="sim" class="simulation hidden" aria-label="Mission simulation">
+  <div class="sim-header">
+    <div id="sim-phase" role="status" tabindex="-1"></div>
+    <button class="secondary" id="abort-btn">Return to Design</button>
+    <div id="sim-info"></div>
+    <progress id="sim-progress" max="4" value="0" aria-label="Mission progress"></progress>
+    <ol class="phase-track"><li>Launch &amp; transit</li><li>Land &amp; descend</li><li>Explore</li><li>Transmit</li></ol>
+  </div>
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <section id="event-box" class="decision hidden" aria-labelledby="ev-title">
+    <h2 id="ev-title" tabindex="-1"></h2>
+    <p id="ev-text"></p>
+    <div id="ev-options" class="decision-options"></div>
+  </section>
+</section>
+
+<dialog id="modal" aria-labelledby="report-title"><div id="modal-card"></div></dialog>
+</body>
+</html>
